@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[12]:
-
-
 import pyttsx3
 import speech_recognition as sr
 import datetime as dt
@@ -52,8 +46,8 @@ def sendEmail(to, content):
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('automation.testing87@gmail.com', 'Kumar@345')
-    server.sendmail('automation.testing87@gmail.com', to, content)
+    server.login('Your email', 'Your password')
+    server.sendmail('Your email', to, content)
     server.close()
         
 
@@ -95,7 +89,7 @@ if __name__ == "__main__":
             try:
                 speak("What should I say?")
                 content = takeCommand()
-                to = "jhark523@gmail.com"    
+                to = "recieptient password"    
                 sendEmail(to, content)
                 speak("Email has been sent!")
             except Exception as e:
@@ -104,8 +98,6 @@ if __name__ == "__main__":
         elif 'quit' in query:
             exit()
 
-
-# In[ ]:
 
 
 
