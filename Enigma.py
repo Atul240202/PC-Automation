@@ -4,13 +4,13 @@
 # In[12]:
 
 
-import pyttsx3
-import speech_recognition as sr
-import datetime as dt
+import pyttsx3  #install this library using 'pip install pyttsx3' in your compiler terminal
+import speech_recognition as sr #install this library using 'pip install SpeechRecognition' in your compiler terminal
+import datetime as dt #Its an pre-installed library in Python
 import wikipedia
 import webbrowser
-import os
-import random
+import os #Its an pre-installed library in Python
+import random #Its an pre-installed library in Python
 import smtplib
 
 engine = pyttsx3.init('sapi5')
