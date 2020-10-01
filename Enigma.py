@@ -6,6 +6,8 @@ import webbrowser
 import os
 import random
 import smtplib
+from email.message import EmailMessage
+
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -42,13 +44,7 @@ def takeCommand():
         return "None" 
     return query
 
-def sendEmail(to, content):
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.ehlo()
-    server.starttls()
-    server.login('Your email', 'Your password')
-    server.sendmail('Your email', to, content)
-    server.close()
+
         
 
 if __name__ == "__main__":
@@ -87,11 +83,23 @@ if __name__ == "__main__":
         
         elif 'email' in query:
             try:
+                msg = EmailMessage()
                 speak("What should I say?")
                 content = takeCommand()
-                to = "recieptient password"    
-                sendEmail(to, content)
-                speak("Email has been sent!")
+                msg.set_content(content)
+                speak("What is the subject?")
+                sub = takeCommand()
+                msg['Subject'] = sub
+                msg['From'] = "automation.testing87@gmail.com"
+                speak("Whom you want to send?")
+                reciepient = {"Atul": "jhark523@gmail.com", "second email": "jhaatul915@gmail.com", "college id": "19bcs1752@gmail.com",
+                         "outlook": "19BCS1752@cuchd.in"}
+                reciever = reciepient[takeCommand()]
+                msg['To'] = reciever
+                server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+                server.login("automation.testing87@gmail.com", "Kumar@345")
+                server.send_message(msg)
+                speak("Email has been sent")
             except Exception as e:
                 print(e)
                 speak("Unable to send mail")
